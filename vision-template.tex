@@ -1,0 +1,166 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue
+}
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.3}
+
+% Optional styling
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.6em}{}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Vision Document [Project Name]}}\\[0.5em]
+\end{center}
+
+{\color{blue}\textit{[Note: The following template is provided for use with the Unified Process. Text enclosed in square brackets and displayed in blue italics is included to provide guidance to the author and should be deleted before publishing the document.]}}
+\vspace{1em}
+
+\section{Introduction}
+\textit{[State the purpose of the vision document you are writing and describe the purpose of the project/software solution.]}
+
+\subsection{References}
+\textit{[This subsection provides a complete list of all documents referenced elsewhere in the Vision document. Identify each document by title, report number (if applicable), date, and publishing organization. Specify the sources from which the references can be obtained. This information may be provided by reference to an appendix or to another document.]}
+
+\section{Positioning}
+
+\subsection{Problem Statement}
+\textit{[Provide a statement summarizing the problem being solved by this project. The following format may be used:]}
+
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{0.28\textwidth}|X|}
+\hline
+The problem of & \textit{[describe the problem]} \\
+\hline
+Affects & \textit{[the stakeholders affected by the problem]} \\
+\hline
+The impact of which is & \textit{[what is the impact of the problem?]} \\
+\hline
+A successful solution would be & \textit{[list some key benefits of a successful solution]} \\
+\hline
+\end{tabularx}
+
+\subsection{Product Position Statement}
+\textit{[Provide an overall statement summarizing, at the highest level, the unique position the product intends to fill in the marketplace. The following format may be used:]}
+
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{0.28\textwidth}|X|}
+\hline
+For & \textit{[target customer]} \\
+\hline
+Who & \textit{[statement of the need or opportunity]} \\
+\hline
+The [Project Name] & \textit{is a [product category]} \\
+\hline
+That & \textit{[statement of key benefit; that is, the compelling reason to buy]} \\
+\hline
+Unlike & \textit{[primary competitive alternative]} \\
+\hline
+Our product & \textit{[statement of primary differentiation]} \\
+\hline
+\end{tabularx}
+
+\textit{[A product position statement communicates the intent of the application and the importance of the project to all concerned personnel.]}
+
+\section{Stakeholder Descriptions}
+
+\subsection{Stakeholder Summary}
+\textit{[There are a number of stakeholders with an interest in the development and not all of them are end users. Present a summary list of these non-user stakeholders. (The users are summarized in Section 3.2.)]}
+
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{0.2\textwidth}|X|X|}
+\hline
+Name & Description & Responsibilities \\
+\hline
+\textit{[Name the stakeholder type.]} &
+\textit{[Briefly describe the stakeholder.]} &
+\textit{[Summarize the stakeholder's key responsibilities with regard to the system being developed.]} \\
+\hline
+\end{tabularx}
+
+\subsection{User Summary}
+\textit{[Present a summary list of all identified users.]}
+
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{0.16\textwidth}|X|X|X|}
+\hline
+Name & Description & Responsibilities & Stakeholder \\
+\hline
+\textit{[Name the stakeholder type.]} &
+\textit{[Briefly describe what they represent with respect to the system.]} &
+\textit{[List the user's key responsibilities with regard to the system being developed.]} &
+\textit{[If the user is not directly represented, identify which stakeholder represents the user's interests.]} \\
+\hline
+\end{tabularx}
+
+\subsection{User Environment}
+\textit{[Detail the working environment of the target user. Suggestions: number of people involved; task cycle duration; time spent per activity; unique constraints (mobile, outdoors, in-flight, etc.); current/future platforms; other applications in use; and integration needs.]}
+
+\subsection{Key Stakeholder or User Needs}
+\textit{[List the key problems with existing solutions as perceived by the stakeholder or user. Clarify: (1) reasons for the problem, (2) how it is solved now, and (3) what solutions are desired.]}
+
+\textit{[It is important to understand relative importance. Fill in the table below. Since no extra information is provided, assume there is no current software system and work is done manually.]}
+
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{0.16\textwidth}|>{\bfseries}p{0.12\textwidth}|X|X|X|}
+\hline
+Need & Priority & Concerns & Current Solution & Proposed Solutions \\
+\hline
+ &  &  &  &  \\
+\hline
+\end{tabularx}
+
+\section{Product Overview}
+
+\subsection{Product Perspective}
+\textit{[This subsection puts the product in perspective to other related products and the user's environment. If the product is independent and self-contained, state it. If it is part of a larger system, describe interactions and interfaces; optionally include a block diagram.]}
+
+\subsection{Assumptions and Dependencies}
+\textit{[List each factor that affects features in this Vision document. List assumptions that, if changed, will alter the document.]}
+
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{0.45\textwidth}|>{\bfseries}X|}
+\hline
+Assumptions & Dependencies \\
+\hline
+\textit{[state any assumptions]} &  \\
+\hline
+ &  \\
+\hline
+ &  \\
+\hline
+ &  \\
+\hline
+\end{tabularx}
+
+\section{Product Features}
+\textit{[List and briefly describe product features. Features are high-level capabilities necessary to deliver benefits. Keep this section understandable for a broad audience while detailed enough to support use-case modeling.]}
+
+\textit{[Recommended: define approximately 25--99 high-level features for a new system or major increment.]}
+
+\textit{[Guideline: Avoid design details. Keep descriptions focused on needed capabilities and why they matter (not implementation).]}
+
+\section{Other Product Requirements}
+\textit{[At a high level, list applicable standards, hardware/platform requirements, performance requirements, and environmental requirements.]}
+
+\textit{[Define quality ranges for performance, robustness, fault tolerance, usability, and similar characteristics not captured in the Feature Set.]}
+
+\textit{[Include design constraints, external constraints, dependencies, documentation requirements, and requirement priority (optionally with stability, benefit, effort, and risk).]}
+
+\end{document}
