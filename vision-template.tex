@@ -38,14 +38,14 @@
 
 \section{Introduction}
 
-This document outlines Healthy Living's goals, stakeholders and features. It defines high-level requirements that will guide development and will keep it aligned with the needs of all stakeholders throughout the project life-cycle. Healthy Living is a web-based application that helps students plan meals, track groceries and discover recipes that fit their budget, schedule and cooking skill. It provides a single, easy-to-use platform for everyday meal management.
+This document outlines Healthy Living's goals, stakeholders and features. It defines high-level requirements that will guide development and will keep it aligned with the needs of all stakeholders throughout the project life-cycle. Healthy Living is a web app that helps students plan meals, track groceries and discover recipes that fit their budget, schedule and cooking skill. It provides a single, easy-to-use platform for everyday meal management.
 
 
 \subsection{References}
 
 \begin{itemize}[leftmargin=1.5em]
   \item \href{https://www.bestcolleges.com/research/food-insecurity-statistics-college-students/}{Food Insecurity in College: Facts and Statistics}: Supports the problem statement by showing how food insecurity affects college students.
-  \item \href{https://formative.jmir.org/2026/1/e84576}{Understanding Graduate Students' Perspectives on Food Apps to Inform User-Centered Design}: Supports several product features, including grocery lists, recipe suggestions by skill and time and nutrition tracking and confirms that shopping list use is linked to less food waste.
+  \item \href{https://formative.jmir.org/2026/1/e84576}{Understanding Graduate Students' Perspectives on Food Apps to Inform User-Centered Design}: Supports several product features, including grocery lists, recipe suggestions by skill and time and nutrition tracking and confirms that grocery list use is linked to less food waste.
   \item \href{https://github.com/jdiaz216/SOEN-6481-Healthy-Living/blob/master/vision-template.tex}{Github}: Repository link where this LaTeX document template is hosted
   
 \end{itemize}
@@ -93,7 +93,7 @@ Our product & Is built around a student's budget, schedule and cooking skill, to
 \hline
 Name & Description & Responsibilities \\
 \hline
-Sponsor & Sponsors and owns the project & Approves scope, budget and overall direction \\
+Sponsor & Sponsors and owns the project & Provides resources, defines the business objectives and approves scope, budget and overall direction \\
 \hline
 Product Owner & Represents the Student's interests within the company & Gathers student feedback, prioritizes features and is accountable for the product success with the students \\
 \hline
@@ -123,10 +123,10 @@ Support Specialist & Helps users with problems & Resolves tickets, fixes issues 
 
 \subsection{User Environment}
 \begin{itemize}[leftmargin=1.5em]
-  \item \textbf{Student:} Accesses the web app from different types of devices (cellphones, tablets and laptops) from anywhere, with different internet connection speeds and can receive alerts and reminders on their smart devices. They can access the web app at any time of the day and the number of students can grow to millions.
-  \item \textbf{System Administrator:} Accesses the web app from a desktop to maintain and fix issues with the backend infrastructure from a very secure network. They can access at any time of the day and the number of administrators is expected to stay under 10.
-  \item \textbf{Content Moderator:} Accesses the web app from mobile devices as well, but mostly works from a desktop in the office, during office hours. The number of content moderators is expected to be under 10.
-  \item \textbf{Support Specialist:} Accesses the web app from the office and from home to resolve issues and handle overall customer service, during office hours. The number of support specialists is elastic depending on user support needs, but is expected to start around 10.
+  \item \textbf{Student:} Accesses the web app from different types of devices (cellphones, tablets and laptops) from anywhere, with different internet connection speeds and can receive alerts and reminders on their smart devices. They can access the web app at any time of the day and the number of students can grow up to 5 million within the first three years.
+  \item \textbf{System Administrator:} Accesses the web app from a desktop to maintain and fix issues with the backend infrastructure, over a VPN connection requiring multi-factor authentication. They can access at any time of the day and the number of administrators is expected to stay under 10.
+  \item \textbf{Content Moderator:} Accesses the web app from mobile devices as well, but works from a desktop in the office for at least 80\% of their time, during office hours. The number of content moderators is expected to be under 10.
+  \item \textbf{Support Specialist:} Accesses the web app from the office and from home to resolve issues and handle overall customer service, during office hours. The number of support specialists is elastic depending on user support needs, but is expected to start around 10, based on projected ticket volume from the initial student rollout.
   \item \textbf{System Integration:} The application will integrate with existing APIs to retrieve food information, such as nutrition data and ingredients.
 \end{itemize}
 
@@ -150,11 +150,11 @@ Track spending and nutrition & Medium & Hard to keep an eye on budget and health
 \section{Product Overview}
 
 \subsection{Product Perspective}
-Healthy Living is a stand-alone web application. It is not part of a larger internal system or product line and it does not depend on any other in-house product to function. It has one shared database behind it, storing meal plans, grocery lists, recipes, user accounts and support tickets.
+Healthy Living is a stand-alone web application. It is not part of a larger internal system or product line and it does not depend on any other in-house product to function. It maintains a consistent, centralized data store for meal plans, grocery lists, recipes, user accounts and support tickets, so that data is accessible and up to date across all four user roles.
 
 While the product is self-contained, it does interface with external systems. Healthy Living integrates with existing third-party APIs to retrieve food-related data, such as nutrition facts and ingredient information, rather than maintaining this data manually. This keeps recipe and nutrition content accurate and up to date without extra work from the Content Moderator.
 
-Students access the web app directly through a browser, on any device. Administrators, Content Moderators and Support Specialists access the same underlying web application, but through different URLs and user interfaces suited to their responsibilities. All four roles interact with the same central database, so information (such as a moderated recipe or a resolved ticket) is reflected consistently across the system.
+Students access the web app directly through a browser, on any device. System Administrators, Content Moderators and Support Specialists access the same underlying web application, but through different URLs and user interfaces suited to their responsibilities. All four roles interact with the same central database, so information (such as a moderated recipe or a resolved ticket) is reflected consistently across the system.
 
 \begin{figure}[h]
     \centering
@@ -171,7 +171,7 @@ Students access the web app directly through a browser, on any device. Administr
 \hline
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[leftmargin=2em, itemsep=4pt, topsep=2pt]
-  \item[A1] Students have access to a phone, tablet, or laptop and internet connection.
+  \item[A1] Students have access to a phone, tablet, or laptop and an internet connection of at least 1 Mbps, sufficient for basic web browsing. The app is not assumed to function normally over unstable or significantly slower connections.
   \item[A2] Students and Administrators may need access to the system at any time of day.
   \item[A3] Content Moderators and Support Specialists only need access during office hours.
   \item[A4] Reliable nutrition and ingredient data exist and can be sourced from external providers.
@@ -195,44 +195,46 @@ Students access the web app directly through a browser, on any device. Administr
 
 \subsection{Student Features}
 \begin{enumerate}[leftmargin=1.7em]
-  \item \textbf{Account Registration and Login:} A student can create an account and sign in, so their meal plans and preferences are saved and kept private.
+  \item \textbf{Account Registration and Login:} A student can create an account and sign in, so their meal plans and preferences are saved and kept private from other students.
   \item \textbf{Student Profile and Preferences:} A student can save their diet, allergies and cooking skill, so the web app can suggest things that fit them.
   \item \textbf{Grocery Budget Setting:} A student can set how much they want to spend on groceries, so meal plans stay within their budget.
-  \item \textbf{Meal Plan Creation:} A student can plan meals for a day or a week, so they know what to eat ahead of time.
+  \item \textbf{Meal Plan Creation:} A student can plan meals for a day or a week, so they know what to eat ahead of time. The web app enforces the student's set grocery budget and will not let a meal plan be created if its estimated cost exceeds that budget.
   \item \textbf{Meal Plan Editing:} A student can change or remove planned meals, so the plan can adjust to a busy week.
   \item \textbf{Weekly Calendar View:} A student can see all planned meals for the week in one place.
   \item \textbf{Automatic Grocery List Generation:} The web app builds a grocery list from the meal plan, so the student does not have to figure it out themselves.
   \item \textbf{Grocery List Editing and Check-off:} A student can add, remove, or check off items while shopping, so the list is updated.
-  \item \textbf{Recipe Search and Filtering:} A student can find recipes by ingredient, difficulty or time, so they can find something they can actually cook.
-  \item \textbf{Recipe Suggestions Based on Meal Plan:} The web app suggests recipes that match the student's plan, budget and skill, so they spend less time deciding.
+  \item \textbf{Recipe Search and Filtering:} A student can actively search for and filter recipes by ingredient, difficulty or time. The results are automatically pre-filtered using the student's saved diet, allergy and cooking-skill preferences from their profile (Feature 2) and the student can refine from there, so they can find something specific they can actually cook.
+  \item \textbf{Recipe Suggestions Based on Meal Plan:} Independent of any search, the web app proactively suggests recipes that match the student's existing meal plan, budget and skill, so they spend less time deciding without having to search themselves.
   \item \textbf{Recipe Nutrition and Allergen Information:} A student can see nutrition facts and allergen warnings on a recipe, so they can make safe choices.
   \item \textbf{Save and Rate Recipes:} A student can save favorite recipes and rate ones they have tried, so good recipes are easy to find again.
-  \item \textbf{Alerts and Reminders:} A student gets reminders to plan meals or go shopping, so they are less likely to forget.
+  \item \textbf{Flag Recipe:} A student can flag a recipe if they have concerns about its accuracy, safety or quality, so moderators can review it.
+  \item \textbf{Alerts and Reminders:} A student gets browser push notifications and email reminders to plan meals or go shopping, so they are less likely to forget.
   \item \textbf{Historical Data Charts:} A student can see charts of past activity, like calories eaten over past weeks, so they can track progress over time.
+  \item \textbf{Budget and Nutrition Tracking:} A student can log grocery purchases against his budget and record daily meals eaten to track nutrition intake. This data feeds his historical charts and he can stay on his budget and health goals.
   \item \textbf{Seasonal Food Recommendations:} The web app recommends seasonal food that is cheaper to buy, so students can save money.
   \item \textbf{Student-Created Support Tickets:} A student can open a support ticket if something goes wrong with the web app, so they can get help directly.
 \end{enumerate}
 
 \subsection{System Administrator Features}
-\begin{enumerate}[leftmargin=1.7em, start=17]
+\begin{enumerate}[leftmargin=1.7em, start=19]
   \item \textbf{System Health Monitoring:} An administrator can see uptime, errors and system load, so problems are identified early.
   \item \textbf{User Account Management:} An administrator can suspend, restore or remove accounts, so account issues get resolved quickly.
-  \item \textbf{Access Control and Permissions:} An administrator can control who can see or do what in the system, so each role only has access to what it needs.
-  \item \textbf{Event Log Viewing:} An administrator can view event logs, so they can analyze and understand system issues.
+  \item \textbf{Access Control and Permissions:} An administrator can control which role has access to which features and functionality in the system, so each role only has access to what it needs. This is for functional access only, not routine visibility into individual students' private data.
+  \item \textbf{Event Log Viewing:} An administrator can view event logs at user actions granularity, retained for at least 90 days, so they can analyze and understand system issues.
 \end{enumerate}
 
 \subsection{Content Moderator Features}
-\begin{enumerate}[leftmargin=1.7em, start=21]
+\begin{enumerate}[leftmargin=1.7em, start=23]
   \item \textbf{Recipe Review and Approval:} A moderator can check a recipe before it is published, so students only see recipes that are accurate and safe.
   \item \textbf{Recipe Editing:} A moderator can fix ingredients, steps or nutrition info, so the recipe has accurate information.
   \item \textbf{Recipe Removal for Safety:} A moderator can take down a recipe that is unsafe or wrong, so bad content is not visible.
   \item \textbf{Recipe Tagging and Categorization:} A moderator can organize recipes with tags and categories, so students can find what they need.
-  \item \textbf{Flagged Content Review:} A moderator can review recipes reported by students, so user concerns get addressed.
-  \item \textbf{Recipe View and Usage Reports:} A moderator can see reports on how recipes are viewed and used, so they know what content works best.
+  \item \textbf{Flagged Content Review:} A moderator can review recipes flagged by students (Feature 13), so student concerns get addressed.
+  \item \textbf{Recipe View and Usage Reports:} A moderator can see reports on how recipes are viewed and used, so they, as the owner of recipe content quality, know what content works best and can prioritize accordingly.
 \end{enumerate}
 
 \subsection{Support Specialist Features}
-\begin{enumerate}[leftmargin=1.7em, start=27]
+\begin{enumerate}[leftmargin=1.7em, start=29]
   \item \textbf{Support Ticket Management:} A specialist can receive, track and respond to student tickets, so issues get resolved in an organized way.
   \item \textbf{Student Account Visibility:} A specialist can view relevant account details, so they can solve a reported issue faster.
   \item \textbf{Issue Escalation:} A specialist can send technical issues to an administrator or content issues to a moderator, so the right person can resolve them.
@@ -244,24 +246,24 @@ Students access the web app directly through a browser, on any device. Administr
 \subsection{Applicable Standards}
 \begin{itemize}[leftmargin=1.5em]
   \item Web accessibility guidelines (e.g., WCAG) should guide the frontend.
-  \item Data protection and privacy practices apply to student data, including dietary and health-related information.
+  \item Data protection and privacy practices apply to all data stored in the system, including student data (such as dietary and health-related information) and any recipe content, tags, or metadata that can be linked back to an individual student (e.g., a student's saved, rated, or flagged recipes).
 \end{itemize}
 
 \subsection{Platform and Hardware Requirements}
 \begin{itemize}[leftmargin=1.5em]
   \item The web app must run in any modern web browser, on desktop, tablet and mobile, with no installation required.
-  \item The backend must run on infrastructure that can scale to support millions of student accounts.
+  \item The backend must run on infrastructure that can scale to support up to 5 million student accounts within the first three years.
 \end{itemize}
 
 \subsection{Performance Requirements}
 \begin{itemize}[leftmargin=1.5em]
-  \item Common student actions, such as checking off a grocery item or viewing a recipe, should take less than 100 milliseconds, even on a slow mobile connection.
+  \item The system must respond to common student actions, such as checking off a grocery item or loading a recipe page, in less than 100 milliseconds, even on a slow mobile connection.
   \item The system must stay responsive with a student base that can grow into the millions.
 \end{itemize}
 
 \subsection{Design and External Constraints}
 \begin{itemize}[leftmargin=1.5em]
-  \item The four user roles (Student, Administrator, Content Moderator, Support Specialist) must stay clearly separated, each with access only to what they need.
+  \item The four user roles (Student, System Administrator, Content Moderator, Support Specialist) must stay clearly separated, each with access only to what they need.
   \item The web app depends on external APIs for nutrition and ingredient data, so it must handle cases where that data is delayed or unavailable.
 \end{itemize}
 
@@ -292,5 +294,301 @@ Product Features & 3.5 \\
 Other Product Requirements & 1.5 \\
 \hline
 \end{tabularx}
+
+\section{Identifying and finding inconsistencies in the vision document}
+
+\subsection{Defects table}
+
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|c|p{2.3cm}|p{2cm}|p{1.5cm}|p{4.5cm}|c|c|}
+\hline
+\textbf{\#} & \textbf{Location} & \textbf{Defect Type} & \textbf{Class.} & \textbf{Description} & \textbf{Status} & \textbf{Date} \\
+\hline
+\endfirsthead
+
+\multicolumn{7}{c}{\tablename\ \thetable{} -- continued from previous page} \\
+\hline
+\textbf{\#} & \textbf{Location} & \textbf{Defect Type} & \textbf{Class.} & \textbf{Description} & \textbf{Status} & \textbf{Date} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & Sec. 3.4 vs. Sec. 5.1 & Omission & Major & There is a need ``Track spending and nutrition'' (Medium priority), but no feature exists to track grocery spending against the budget set, nor nutrition tracking. & Resolved & August 8, 2026 \\
+\hline
+
+2 & Feature 15 (5.1) & Omission & Major & ``Historical Data Charts'' references calories eaten over past weeks, but no feature stores daily nutrition/calorie intake. & Resolved & August 8, 2026 \\
+\hline
+
+3 & Feature 14 (5.1) vs. Sec. 4.1/6.2 & Contradiction & Major & Alerts/reminders to students' ``smart devices,'' suggests push notifications while Sec. 4.1/6.2 define Healthy Living strictly as a browser-based web app with alerting capabilities. & Resolved & August 8, 2026 \\
+\hline
+
+4 & Features 9 \& 10 (5.1) & Ambiguity & Minor & ``Recipe Search and Filtering'' and ``Recipe Suggestions Based on Meal Plan'' can be  the same feature or two distinct mechanisms. Needs to be clarified. & Resolved & August 8, 2026 \\
+\hline
+
+5 & Feature 22 (5.2) & Unmeasurability & Minor & ``Event Log Viewing'' has no measurable criteria, such as: retention period or granularity. & Resolved & August 8, 2026 \\
+\hline
+
+6 & Feature 28 (5.3) & Opacity & Minor & ``Recipe View and Usage Reports'' doesn't explain why this belongs to the Content Moderator rather than another suitable role such as manager. & Resolved & August 8, 2026 \\
+\hline
+
+7 & Sec. 3.1 (Stakeholder Summary) & Omission & Minor & The Sponsor's responsibilities only mention approving scope, budget and direction, omitting that a sponsor also provides resources and defines the business objectives of the project. & Resolved & August 8, 2026 \\
+\hline
+
+8 & Sec. 3.3 (User Environment / Student); Sec. 6.2 (Platform and Hardware Requirements) & Ambiguity & Minor & Both the Student's user environment and the Platform and Hardware Requirements state the number of students ``can grow to millions,'' which is not measurable, since it could mean anywhere from 2 million to 999 million. & Resolved & August 9, 2026 \\
+\hline
+
+9 & Sec. 3.3 (User Environment / System Administrator) & Unmeasurability & Minor & The System Administrator's environment describes access from a ``very secure network,'' which has no measurable criteria to verify what qualifies as secure. & Resolved & August 8, 2026 \\
+\hline
+
+10 & Sec. 3.3 (User Environment / Content Moderator) & Ambiguity & Minor & The Content Moderator's environment states they ``mostly'' work from a desktop in the office, which is not measurable and can be interpreted differently by different readers. & Resolved & August 8, 2026 \\
+\hline
+
+11 & Sec. 3.3 (User Environment / Support Specialist) & Opacity & Minor & The Support Specialist's environment states the team is ``expected to start around 10'' without explaining the reasoning behind that number. & Resolved & August 8, 2026 \\
+\hline
+
+12 & Sec. 6.1 (Product Perspective) & Overspecification & Minor & States the product ``has one shared database,'' which specifies an implementation/design decision rather than a requirement. A distributed system with multiple databases could equally satisfy the underlying need for consistent, centralized data. & Resolved & August 8, 2026 \\
+\hline
+
+13 & Sec. 6.2, Assumption A1 & Inadequacy & Minor & Assumes students ``have access to an internet connection'' without qualifying the quality or speed needed, leaving it unclear if the app is expected to function normally on a very slow or unstable connection. & Resolved & August 8, 2026 \\
+\hline
+
+14 & Feature 1 (5.1) vs. Feature 21 (5.2) & Contradiction & Major & Feature 1 states student data is ``kept private,'' while Feature 21 states an administrator ``can control who can see or do what in the system,'' which could be read as the administrator having open access to that private data. & Resolved & August 8, 2026 \\
+\hline
+
+
+15 & Feature 3 (5.1) vs. Features 4 \& 5 (5.1) & Inconsistency & Minor & Feature 3 lets a student set a grocery budget, but Features 4 and 5 (meal plan creation/editing) don't state what happens if a planned meal exceeds that budget, leaving the relationship between the two unclear. & Resolved & August 9, 2026 \\
+\hline
+
+16 & Feature 20 (5.2) & Opacity & Minor & States an administrator can ``suspend, restore or remove accounts, so account issues get resolved quickly,'' but removing or suspending an account does not resolve most account issues, it only contains them. The rationale doesn't match the action. & Resolved & August 8, 2026 \\
+\hline
+
+17 & Feature 26 (5.3) & Omission & Major & ``Flagged Content Review'' states a moderator reviews recipes ``reported by students,'' but no student feature exists for a student to report a recipe. & Resolved & August 9, 2026 \\
+\hline
+
+18 & Sec. 8.1 (Applicable Standards) & Ambiguity & Minor & States ``data protection and privacy practices apply to student data'' without naming a specific practice or standard, leaving it unclear what protection is actually required. & Resolved & August 9, 2026 \\
+\hline
+
+19 & Sec. 8.3 (Performance Requirements) & Opacity & Minor & States that student actions such as ``viewing a recipe'' should take less than 100 milliseconds, which reads as the duration of the action rather than the system's response time. & Resolved & August 9, 2026 \\
+\hline
+
+\end{longtable}
+
+
+\subsection{Inconsistencies table}
+
+
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|c|p{2.6cm}|p{1.9cm}|p{1.3cm}|p{5.2cm}|c|c|}
+\caption{Inconsistencies identified in the Vision Document} \\
+\hline
+\textbf{\#} & \textbf{Location} & \textbf{Inconsistency Type} & \textbf{Class.} & \textbf{Description} & \textbf{Status} & \textbf{Date} \\
+\hline
+\endfirsthead
+
+\multicolumn{7}{c}{\tablename\ \thetable{} -- continued from previous page} \\
+\hline
+\textbf{\#} & \textbf{Location} & \textbf{Inconsistency Type} & \textbf{Class.} & \textbf{Description} & \textbf{Status} & \textbf{Date} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & Sec. 1.1 with Features 7-8 & Terminology & Weak & \textbf{S1} Sec. 1.1 uses ``shopping list,'' while \textbf{S2} Feature 7 and Feature 8 uses ``grocery list'' for the same concept. The two terms seem interchangeable, so it is unclear if they denote the same thing. & Resolved & August 9, 2026 \\
+\hline
+
+2 & Sec. 3.1 with Sec. 4.1 & Designation & Weak & \textbf{S3} Sec. 3.1 formally names the role ``System Administrator,'' but \textbf{S4} Sec. 4.1 shortens it to ``Administrator'' without explanation, creating confusion with a generic admin role. & Resolved & August 9, 2026 \\
+\hline
+
+3 & Sec. 1 with Sec. 6.2& Terminology & Weak & \textbf{S5} Sec. 1 uses the term (``web-based application'') and \textbf{S6} Sec. 6.2 uses (``web app''), they both appear to refer to the same system, but no single term is established. & Resolved & August 9, 2026 \\
+\hline
+
+4 & Sec. 6.1 with Features 23-25 & Terminology & Strong & \textbf{S7} Sec. 8.1 refers only to ``student data,'' while \textbf{S8} Features 23-25 distinguishes ``student'' data from ``recipe content'' owned by the Content Moderator. Resolved via Alternative 2 (Weaken conflicting statements): S7 was broadened to cover all data in the system, including recipe content linkable to a student, closing the ambiguity by making the privacy rule maximally inclusive rather than precisely scoped. & Resolved & August 9, 2026 \\
+\hline
+
+5 & Feature 2 with Feature 9 & Terminology & Strong & \textbf{S9} (Sec. 5.1 Feature 2) indicates that student can save their diet, allergies and cooking skill while \textbf{S10} (Sec. 5.1, Feature 9) introduces filtering recipes by ingredients, difficulty and time. Resolved via Alternative 1 (Weaken conflicting statements): Feature 9 now automatically layers the saved profile preferences (diet, allergies, cooking skill) on top of manual search as a pre-filter, which the student can further refine, reusing the existing profile-filter logic rather than duplicating it. & Resolved & August 9, 2026 \\
+\hline
+
+\end{longtable}
+
+
+\newpage
+
+\begin{center}
+    {\LARGE \textbf{Rebuttal Form}}\\[0.5em]
+\end{center}
+
+\subsection*{Response to Reviewers, Teacher Assistant, and Instructor}
+
+\subsubsection*{Introduction}
+
+I would like to thank the reviewers, and teacher assistant for their detailed feedback and useful suggestions to improve my vision document.
+
+I have carefully considered all the issues raised by my peer, teacher assistant, and instructor and prepared a revised vision document. This document outlines how I have addressed each comment individually. Each comment has been assigned a number R(1-3).C(1-N), where the number to the right of the R identifies the reviewer, and the number to the right of the C identifies the comment.
+
+My response to each comment is highlighted in blue.
+
+Thanks for the opportunity to improve my vision document.
+
+Sincerely,
+
+Jorge Diaz
+
+Use the following IDs to identify each reviewer in an abbreviated manner through the rebuttal.
+
+\begin{tabularx}{\textwidth}{|X|c|}
+\hline
+\textbf{Reviewer} & \textbf{ID} \\
+\hline
+Peer 1 (comments received in D2) & R1 \\
+\hline
+Peer 2 (comments received in D2) & R2 \\
+\hline
+Teacher assistant (comments received in D1) & R3 \\
+\hline
+\end{tabularx}
+
+\subsubsection*{Reviewer Comments}
+
+List each comment and assign a unique ID.
+
+R1.01 Task 1 Defects: I think there is an omission defect here, because a sponsor does not just approve, they also provide resources and define the business objective of the project. (Location: Stakeholder Summary / Sponsor)
+
+\textcolor{blue}{Thank you for catching this. You're right that the Sponsor's responsibilities were incomplete. I've logged this as Defect \#7 (Omission, Minor) in the Defects table and updated the Sponsor row in the Stakeholder Summary.}
+
+
+R1.02 Task 1 Defects: I think there is an ambiguity here because ``millions'' can range from 2 million to 999 million students, which are two very different numbers. (Location: User Environment / Student)
+
+\textcolor{blue}{Good catch, ``millions'' was not measurable. I've logged this as Defect \#8 (Ambiguity, Minor) in the Defects table and updated the Student row in the User Environment section to state a concrete, measurable target: growth up to 5 million students within the first three years.}
+
+R1.03 Task 1 Defects: That is probably an unmeasurability defect, because ``very secure'' is not measurable. (Location: User Environment / System Administrator)
+
+\textcolor{blue}{Agreed, ``very secure'' had no measurable criteria. I've logged this as Defect \#9 (Unmeasurability, Minor) in the Defects table and updated the System Administrator in the User Environment section to specify a concrete security requirement: access over a VPN connection with multi-factor authentication.}
+
+R1.04 Task 1 Defects: I think this is an ambiguity defect because ``mostly'' can be understood differently by different people. (Location: User Environment / Content Moderator)
+
+\textcolor{blue}{Agreed, ``mostly'' was subjective and not measurable. I've logged this as Defect \#10 (Ambiguity, Minor) in the Defects table and updated the Content Moderator information in the User Environment section to state a concrete number: working from a desktop in the office at least 80\% of the time.}
+
+R1.05 Task 1 Defects: Why is it expected to start around 10? Looks like an opacity defect to me. (Location: User Env / Support specialist)
+
+\textcolor{blue}{Agreed, the reasoning behind the initial team size wasn't explained. I've logged this as Defect \#11 (Opacity, Minor) in the Defects table and updated the Support Specialist information in the User Environment section to state the basis for that number: it's derived from projected ticket volume from the initial student rollout.}
+
+R1.06 Task 1 Inconsistencies: There is an inconsistency between this and section 4.1. Here it states that moderators review and approve recipes, while in 4.1 it states that ingredient information (which are essentially just recipes) is maintained through third-party APIs. Isn't reviewing and approving recipes part of maintaining it? (Location: Key Stakeholder or User Needs / Trust that recipes are safe and accurate, comment over the Proposed Solution)
+
+\textcolor{blue}{Thank you for flagging this, but I don't believe there is an inconsistency here. Sec. 4.1 says that the third-party APIs are used to retrieve \textit{ingredient and nutrition data} (calories, allergens, nutrition facts for individual ingredients), not full recipes. Recipes, meaning the combination of ingredients, steps and instructions, are authored and reviewed within Healthy Living, which is why the Content Moderator reviews and approves them before they are displayed to students. Since the API only supplies ingredient-level data and not the recipes, the two statements describe two separate things and no inconsistency is present.}
+
+R1.07 Task 1 Defects, Nitpick: This is an overspecification defect because you are explaining the solution of storing meal plans. Why can't developers choose a distributed system that is composed of multiple databases for example? (Location: Product perspective, highlighting the shared database)
+
+\textcolor{blue}{Fair point, ``one shared database'' prescribed a specific implementation rather than stating the requirement. I've logged this as Defect \#12 (Overspecification, Minor) in the Defects table and reworded the Product Perspective section to describe the need, a consistent, centralized data store accessible across all four roles, without mandating a single-database implementation. This leaves the actual data architecture (single database, distributed system, etc.) open for the architect to decide.}
+
+R1.08 Task 1 Inconsistencies: See the comment in section 3.4 (Location: Product perspective)
+
+\textcolor{blue}{This is already addressed in R1.06 above, please see that response.}
+
+R1.09 Task 1 Defects: I think this is an inadequacy defect. Students should have access to internet connection and that's it? what if it is super slow, should the web app still function normally? (Location: Assumption A1)
+
+\textcolor{blue}{Agreed, the assumption was inadequate as written, it didn't set any expectation for connection quality. I've logged this as Defect \#13 (Inadequacy, Minor) in the Defects table and updated Assumption A1 to specify a minimum connection speed (1 Mbps) sufficient for basic web browsing.}
+
+R1.10 Task 1 Inconsistencies: There is an inconsistency between this and feature 19 because it states ``an administrator can control who can see or do what in the system.'' So you want user data to be private but the administrator can control who sees it? (Location: Feature 1)
+
+\textcolor{blue}{Good catch, this was a genuine contradiction. I've logged this as Defect \#14 (Contradiction, Major) in the Defects table. I clarified Feature 1 to state that data is kept private from other students specifically, and reworded Feature 19 so that access control governs which role has access to which functionality, not routine visibility into individual students' private data.}
+
+R1.11 Task 1 Inconsistencies: There is a minor inconsistency between this and feature 4 and/or 5. What if a student plans a meal that exceeds their budget? (Location: Feature 3)
+
+\textcolor{blue}{Good catch. The intended behavior is that a meal plan exceeding the set grocery budget cannot be created, the budget acts as a hard constraint. I've logged this as Defect \#15 (Inconsistency, Minor) in the Defects table and updated Feature 4 (Meal Plan Creation) to explicitly state that the web app enforces the budget set in Feature 3 and will not allow a meal plan to be created if its estimated cost exceeds it.}
+
+R1.12 Nitpick: I don't get how removing accounts solves the ``issues get resolved quickly.'' (Location: Feature 19)
+
+\textcolor{blue}{Fair nitpick, removing or suspending an account doesn't resolve most underlying account issues. I've logged this as Defect \#16 (Opacity, Minor) in the Defects table and reworded Feature 19 (User Account Management) to reflect that the action's purpose is to contain security or policy violations quickly, rather than to resolve generic account issues.}
+
+R1.13 Task 1 Defects: Unsure but possibly an omission defect. students can report recipes? Where is that feature? (Location: Feature 25)
+
+\textcolor{blue}{Good catch. Feature 26 (Flagged Content Review) assumed students could report recipes, but no student feature existed for that. I've logged this as Defect \#17 (Omission, Major) in the Defects table and added a new student feature, Flag Recipe (Feature 13), so a student can flag a recipe if they have concerns about its accuracy, safety or quality. I also updated Flagged Content Review (Feature 27) to explicitly reference this new feature, so a moderator can review recipes flagged by students and student concerns get addressed.}
+
+R1.14 Task 1 Defects: Ambiguity, because ``privacy practices'' can be many things. You should mention a specific privacy practice. (Location: Other product requirements / Applicable standards)
+
+\textcolor{blue}{Agreed, ``privacy practices'' was too vague to be actionable. I've logged this as Defect \#18 (Ambiguity, Minor) in the Defects table and updated the Applicable Standards section to name concrete practices: encryption of student data at rest and in transit, and compliance with specific regulations (GDPR, CCPA).}
+
+R1.15 Task 1 defects: already mentioned this in another comment. Millions is ambiguous. (Location: Other product requirements / platform and hardware requirements / second bullet)
+
+\textcolor{blue}{This was already resolved as Defect \#8 in R1.02, ``millions'' was flagged there as ambiguous for the same reason. This bullet in the Platform and Hardware Requirements section used the same vague phrasing, so I've updated Defect \#8's location to cover both occurrences and applied the same concrete figure (5 million students within the first three years) here as well, for consistency.}
+
+R1.16 Nitpick: I think you mean the system response not the student action itself. No way a human can view a recipe in 100 milliseconds. (Location: Performance requirements / first bullet)
+
+\textcolor{blue}{You're right, the wording made it sound like the human action itself had to complete in 100ms. I've logged this as Defect \#19 (Opacity, Minor) in the Defects table and reworded the bullet to clearly state it's the system's response time.}
+
+R1.17 Nitpick: feature \#14 states the student should be able to ``see charts of past activity, like calories eaten''. So you are only missing the budget tracking feature.
+
+\textcolor{blue}{This was already resolved when addressing Defect \#1.}
+
+R1.18 Nitpick: Smart devices are stated in section 3.3 so I think including section 5 here is a mistake.
+
+\textcolor{blue}{No mistake here, ``5.1'' in the Location column refers to Section 5.1 (Student Features), which is where the feature being flagged is.}
+
+R1.19 I thought an overlap means they refer to the same concept but do not conflict with each other. You are setting this is just an overlap in task 2 but as a strong inconsistency in task 1? I thought a strong inconsistency = a conflict. (Location: Inconsistencies table, row \#2)
+
+\textcolor{blue}{You're right, that was a mistake on my part. ``System Administrator'' and ``Administrator'' don't actually conflict, they refer to the same role with an overlapping name, which is a weak inconsistency, not a strong one (which should be reserved for genuine conflicts). I've corrected the classification of inconsistency \#2 in the Inconsistencies table from Strong to Weak.}
+
+R1.20 I see you put S7 and S8 as a conflict even though they are set as weak inconsistency in task 1. It is clear to me the criteria you are following is different than my understanding.
+
+\textcolor{blue}{Strong is actually the correct classification here. Sec. 6.1's privacy standard applies to ``student data'' as a whole, while Features 23-25 carve out ``recipe content'' as belonging to the Content Moderator. I've changed the classification of Inconsistency \#4 as Strong}
+
+R2.01 Excellent catch on the unmeasurability of the ``Event Log Viewing'' and the omissions regarding budget tracking. The classification of clashes (Terminology, Designation) is accurate. (Location: Defects table)
+
+\textcolor{blue}{Thank you!}
+
+R2.02 The interaction matrix is mathematically sound (correctly calculating the 6004 total using the 0, 1, 1000 methodology). Minor critique: It would improve readability to explicitly list statements S1-S10 in a standalone table right before the matrix, rather than having the reader hunt for their definitions inside the Task 1 description column.
+
+\textcolor{blue}{Thank you for the kind words on the matrix. I considered adding a standalone S1-S10 table, but decided against it since it seemed redundant, the statements are already labeled and defined inline within the Inconsistencies table's Description column, so a separate table would just duplicate that information. Thanks again for the feedback!}
+
+R2.03 Flawless application of conflict resolution operators. Providing clear ``Resolution 1'' and ``Resolution 2'' options sets up Task 4 perfectly.
+
+\textcolor{blue}{Thank you!}
+
+R2.04 The weighted matrices are logically constructed. The weights correctly sum to 1.0, the 1-5 scoring scale is applied well, and the justifications for the winning alternatives are practical and cost-aware.
+
+\textcolor{blue}{Thank you!}
+
+R2.05 You successfully utilized three techniques (Component Inspection, Checklist, and a Risk Tree) to identify a thorough list of 8 risks.
+
+\textcolor{blue}{Thank you!}
+
+R2.06 The rationales are highly logical, and the likelihood/severity scaling is accurately applied across the board to calculate Risk Exposure.
+
+\textcolor{blue}{Thank you!}
+
+R2.07 You did an excellent job calculating RRL for alternative countermeasures. However, the top rubric bracket requires 2 alternatives to be evaluated for all (100\%) of the risks. Because the ``Usability shortfalls'' risk only received a single countermeasure without an RRL comparison, this section falls into the 80\% completion bracket.
+
+\textcolor{blue}{Thank you for pointing this out. For the ``Usability shortfalls'' risk, only one countermeasure was identified, so a second alternative RRL comparison wasn't provided for that risk. I appreciate you flagging where this falls in the rubric.}
+
+
+\section{Appendix}
+
+\begin{tabularx}{\textwidth}{|X|>{\raggedright\arraybackslash}p{0.3\textwidth}|}
+\hline
+\textbf{Section} & \textbf{Duration (hours)} \\
+\hline
+Update Vision document after reviewing peer and TA comments & 8 \\
+\hline
+Update defects and inconsistencies table & 4 \\
+\hline
+Create and attach a rebuttal letter & 4 \\
+
+\hline
+\end{tabularx}
+
+
 
 \end{document}
