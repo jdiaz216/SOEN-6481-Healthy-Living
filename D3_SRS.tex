@@ -26,7 +26,7 @@
 % or as 300+ dpi .png/.gif if a bitmap is unavoidable.
 % ---------------------------------------------------------
 \usepackage{graphicx}
-\graphicspath{{./figures/}}
+\graphicspath{{./figures/}{./images/}}
 
 % ---------------------------------------------------------
 % CAPTIONS: 8pt font for figure/table captions
@@ -87,7 +87,9 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black}
 
+
 \begin{document}
+
 
 % ===========================================================
 % TITLE (24pt)
@@ -899,5 +901,187 @@ See Supplementary Specification for data security and account privacy requiremen
 % \begin{thebibliography}{9}
 % \bibitem{example2024} A. Author, ``Title of the paper,'' \textit{Journal Name}, vol. 1, no. 1, pp. 1--10, 2024.
 % \end{thebibliography}
+
+
+\clearpage
+
+
+% ===========================================================
+% TITLE (24pt)
+% ===========================================================
+\begin{center}
+{\fontsize{24}{28}\selectfont \textbf{Healthy Living}}
+\end{center}
+\vspace{0.5em}
+
+\begin{center}
+{\fontsize{14}{16}\selectfont \textbf{Supplementary Specification}}
+\end{center}
+\vspace{1em}
+
+% ===========================================================
+% SECTION 1: INTRODUCTION
+% ===========================================================
+\section*{1. Introduction}
+
+This Supplementary Specification captures the non-functional and system-wide requirements for Healthy Living that are not expressed the Use Case Model. Healthy Living is a web application that helps students plan meals, track groceries and discover recipes that fit their budget, schedule and cooking skill. This document defines the quality attributes, legal and regulatory requirements, platform and design constraints and documentation requirements that apply across the system.
+
+\subsection*{1.1 Purpose}
+The purpose of this document is to specify the quality attributes and constraints of the Healthy Living web application, including usability, reliability, performance, supportability, and design requirements, so that these expectations are clear to the development team and can be validated independently of the use cases.
+
+\subsection*{1.2 Scope}
+This Supplementary Specification applies to the Healthy Living project as a whole and covers all four user roles: Student, System Administrator, Content Moderator and Support Specialist. It complements the Use Case Model (UC-01 through UC-11) and the Vision Document by specifying requirements that apply system-wide rather than to a single use case.
+
+\subsection*{1.3 Definitions, Acronyms and Abbreviations}
+\begin{itemize}
+    \item \textbf{WCAG:} Web Content Accessibility Guidelines
+    \item \textbf{GDPR:} General Data Protection Regulation
+    \item \textbf{CCPA:} California Consumer Privacy Act
+    \item \textbf{VPN:} Virtual Private Network
+    \item \textbf{MFA:} Multi-Factor Authentication
+    \item \textbf{API:} Application Programming Interface
+\end{itemize}
+
+\subsection*{1.4 References}
+\begin{itemize}
+    \item Healthy Living Vision Document
+    \item Healthy Living Software Requirements Specification
+\end{itemize}
+
+\ucseparator
+
+% ===========================================================
+% SECTION 2: FUNCTIONALITY
+% ===========================================================
+\section*{2. Functionality}
+
+This section describes functional requirements that support the use cases but not expressed with them.
+
+\subsection*{2.1 Historical Activity Charts}
+The System shall present a Student's historical activity, such as calories eaten and grocery spending against budget over past weeks, as a chart, so the Student can track progress against their nutrition and budget goals over time.
+
+\subsection*{2.2 Support and Usage Reports}
+The System shall generate reports summarizing support ticket volume and trends for the Support Specialist and recipe view and usage statistics for the Content Moderator, so each role can make informed decisions about staffing and content priorities.
+
+\ucseparator
+
+% ===========================================================
+% SECTION 3: USABILITY
+% ===========================================================
+\section*{3. Usability}
+
+\subsection*{3.1 Accessibility Compliance}
+The Health Living frontend shall be designed to conform to the Web Content Accessibility Guidelines (WCAG), so students with disabilities can use the meal planning, grocery and recipe features.
+
+\subsection*{3.2 Cross-Device Usability}
+The web application shall be usable without loss of core functionality on desktop, tablet and mobile browsers, since Students access the system from a variety of device types.
+
+\subsection*{3.3 Learnability}
+A new Student shall be able to complete account registration and create a first meal plan (UC-01, UC-03) without external assistance, relying only on in-app help and tooltips.
+
+\ucseparator
+
+% ===========================================================
+% SECTION 4: RELIABILITY
+% ===========================================================
+\section*{4. Reliability}
+
+\subsection*{4.1 Availability}
+The System shall maintain high availability to support Students and System Administrators, who may require access at any time of day. Also  Content Moderators and Support Specialists, who require access during office hours.
+
+\subsection*{4.2 Data Integrity}
+The System shall ensure that data such as meal plans, grocery lists and recipe content remains consistent and accurate across all four user roles, since all roles interact with the same centralized data store.
+
+\subsection*{4.3 Graceful Degradation}
+The System shall remain operational for core Student-facing features (e.g., viewing a saved meal plan) when the third-party nutrition and ingredient APIs are delayed or unavailable, degrading gracefully rather than failing.
+
+\ucseparator
+
+% ===========================================================
+% SECTION 5: PERFORMANCE
+% ===========================================================
+\section*{5. Performance}
+
+\subsection*{5.1 Response Time}
+The System shall respond to common Student actions, such as checking off a grocery item (UC-04) or loading a recipe page (UC-05, UC-06), in less than 100 milliseconds, even on a slow mobile connection.
+
+\subsection*{5.2 Scalability}
+The System shall remain responsive as the Student base grows to up to 5 million accounts within the first three years.
+
+\subsection*{5.3 Capacity}
+The backend infrastructure shall be capable of scaling to support up to 5 million Student accounts within the first three years without degradation of the response times specified in Section 5.1.
+
+\ucseparator
+
+% ===========================================================
+% SECTION 6: SUPPORTABILITY
+% ===========================================================
+\section*{6. Supportability}
+
+\subsection*{6.1 Event Logging}
+The System shall record event logs at user-action granularity and retain them for at least 90 days, so System Administrators can analyze and troubleshoot system issues (UC-11).
+
+\subsection*{6.2 Internal Documentation}
+The System shall be accompanied by internal documentation covering deployment, backups, and monitoring, so System Administrators can maintain and support the platform.
+
+\ucseparator
+
+% ===========================================================
+% SECTION 7: DESIGN CONSTRAINTS
+% ===========================================================
+\section*{7. Design Constraints}
+
+\subsection*{7.1 Role Separation}
+The four user roles (Student, System Administrator, Content Moderator, Support Specialist) shall remain clearly separated within the System, with each role having access only to the features and functionality it needs (UC-11).
+
+\subsection*{7.2 Browser-Based Platform}
+The System shall run entirely within a modern web browser on desktop, tablet, and mobile devices, with no installation required and shall not depend on native mobile applications or push-notification frameworks unavailable to a browser-based application.
+
+\subsection*{7.3 Third-Party API Dependency}
+The System shall retrieve nutrition and ingredient data from third-party APIs rather than maintaining this data manually and shall be designed to tolerate delays or unavailability of these APIs.
+
+\subsection*{7.4 Data Security and Privacy}
+The System shall encrypt Student data at rest and in transit and shall comply with applicable data protection regulations, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
+
+\subsection*{7.5 Administrative Access}
+System Administrator access to backend infrastructure shall require a VPN connection with multi-factor authentication (MFA).
+
+\ucseparator
+
+% ===========================================================
+% SECTION 8: ONLINE USER DOCUMENTATION AND HELP SYSTEM REQUIREMENTS
+% ===========================================================
+\section*{8. Online User Documentation and Help System Requirements}
+
+\begin{itemize}
+    \item A short user guide for Students, covering account setup, meal planning, groceries and recipes.
+    \item In-app help and tooltips for key actions, such as creating a meal plan (UC-03) or checking off groceries (UC-04).
+    \item Internal documentation for System Administrators, covering deployment, backups and monitoring.
+    \item Release notes for each update, summarizing new features, fixes and known issues.
+\end{itemize}
+
+\ucseparator
+
+% ===========================================================
+% SECTION 9: GLOSSARY
+% ===========================================================
+\section*{9. Glossary}
+
+\begin{longtable}{|p{0.25\linewidth}|p{0.65\linewidth}|}
+\hline
+\textbf{Term} & \textbf{Definition} \\
+\hline
+WCAG & Web Content Accessibility Guidelines; standards for making web content accessible to people with disabilities. \\
+\hline
+GDPR & General Data Protection Regulation; European Union data protection and privacy law. \\
+\hline
+CCPA & California Consumer Privacy Act; California state data privacy law. \\
+\hline
+VPN & Virtual Private Network; a secure network connection used for remote administrative access. \\
+\hline
+MFA & Multi-Factor Authentication; an authentication method requiring two or more verification factors. \\
+\hline
+\end{longtable}
+
 
 \end{document}
