@@ -1,9 +1,9 @@
-\documentclass[11pt]{article}
+\documentclass[10pt,letterpaper]{article}
 
-\usepackage[margin=1in]{geometry}
+\usepackage[letterpaper, margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+\usepackage{times}          % Times New Roman for all text and headings
 \usepackage{setspace}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -14,12 +14,19 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage{caption}
 
 \hypersetup{
   colorlinks=true,
   linkcolor=blue,
   urlcolor=blue
 }
+
+% Page numbers at the bottom of every page
+\pagestyle{plain}
+
+% Captions (figures and tables) set to 8pt as required
+\captionsetup{font=footnotesize, labelfont=bf}
 
 \setlength{\parskip}{0.5em}
 \setlength{\parindent}{0pt}
@@ -33,7 +40,7 @@
 \begin{document}
 
 \begin{center}
-    {\LARGE \textbf{Vision Document [Healthy Living]}}\\[0.5em]
+    {\fontsize{24}{28}\selectfont\bfseries Vision Document [Healthy Living]}\\[0.5em]
 \end{center}
 
 \section{Introduction}
@@ -43,18 +50,23 @@ This document outlines Healthy Living's goals, stakeholders and features. It def
 
 \subsection{References}
 
+{\footnotesize
 \begin{itemize}[leftmargin=1.5em]
   \item \href{https://www.bestcolleges.com/research/food-insecurity-statistics-college-students/}{Food Insecurity in College: Facts and Statistics}: Supports the problem statement by showing how food insecurity affects college students.
   \item \href{https://formative.jmir.org/2026/1/e84576}{Understanding Graduate Students' Perspectives on Food Apps to Inform User-Centered Design}: Supports several product features, including grocery lists, recipe suggestions by skill and time and nutrition tracking and confirms that grocery list use is linked to less food waste.
   \item \href{https://github.com/jdiaz216/SOEN-6481-Healthy-Living/blob/master/vision-template.tex}{Github}: Repository link where this LaTeX document template is hosted
   
 \end{itemize}
+}
 
 \section{Positioning}
 
 \subsection{Problem Statement}
 
-
+\begin{table}[h!]
+\centering
+\caption{Problem statement for Healthy Living}
+\label{tab:problem-statement}
 \begin{tabularx}{\textwidth}{|>{\bfseries}p{0.28\textwidth}|X|}
 \hline
 The problem of & Students not having an easy way to plan meals, shop within a budget and cook something simple \\
@@ -66,9 +78,14 @@ The impact of which is & Poor nutrition, food insecurity, wasted money and stres
 A successful solution would be & A web app that plans meals, builds a matching grocery list and suggests recipes that are actually easy to make, so students eat better with their budget\\
 \hline
 \end{tabularx}
+\end{table}
 
 \subsection{Product Position Statement}
 
+\begin{table}[h!]
+\centering
+\caption{Product position statement for Healthy Living}
+\label{tab:product-position}
 \begin{tabularx}{\textwidth}{|>{\bfseries}p{0.28\textwidth}|X|}
 \hline
 For & Students who want to eat well and stay healthy without a lot of time, money or cooking skill \\
@@ -84,11 +101,16 @@ Unlike & General nutrition apps built for everyone, not students \\
 Our product & Is built around a student's budget, schedule and cooking skill, to support their health and wellbeing and works in the browser\\
 \hline
 \end{tabularx}
+\end{table}
 
 \section{Stakeholder Descriptions}
 
 \subsection{Stakeholder Summary}
 
+\begin{table}[h!]
+\centering
+\caption{Stakeholder summary for Healthy Living}
+\label{tab:stakeholder-summary}
 \begin{tabularx}{\textwidth}{|>{\bfseries}p{0.2\textwidth}|X|X|}
 \hline
 Name & Description & Responsibilities \\
@@ -104,9 +126,14 @@ Content Moderator & Owner of recipe content quality & Cares about the accuracy a
 Support Specialist & Front-line contact for user issues & Cares about ticket volume, resolution time and student satisfaction \\
 \hline
 \end{tabularx}
+\end{table}
 
 \subsection{User Summary}
 
+\begin{table}[h!]
+\centering
+\caption{User summary for Healthy Living}
+\label{tab:user-summary}
 \begin{tabularx}{\textwidth}{|>{\bfseries}p{0.16\textwidth}|X|X|X|}
 \hline
 Name & Description & Responsibilities & Stakeholder \\
@@ -120,6 +147,7 @@ Content Moderator & Keeps the recipes good and safe & Reviews, edits and removes
 Support Specialist & Helps users with problems & Resolves tickets, fixes issues and escalates when needed & Self-represented \\
 \hline
 \end{tabularx}
+\end{table}
 
 \subsection{User Environment}
 \begin{itemize}[leftmargin=1.5em]
@@ -131,6 +159,11 @@ Support Specialist & Helps users with problems & Resolves tickets, fixes issues 
 \end{itemize}
 
 \subsection{Key Stakeholder or User Needs}
+\begin{table}[h!]
+\centering
+\caption{Key stakeholder or user needs for Healthy Living}
+\label{tab:user-needs}
+\small
 \begin{tabularx}{\textwidth}{|p{0.16\textwidth}|p{0.12\textwidth}|X|X|X|}
 \hline
 \textbf{Need} & \textbf{Priority} & \textbf{Concerns} & \textbf{Current Solution} & \textbf{Proposed Solutions} \\
@@ -146,6 +179,7 @@ Trust that recipes are safe and accurate & High & No way to verify nutrition inf
 Track spending and nutrition & Medium & Hard to keep an eye on budget and health goals without a dedicated tool & Manual tracking in notebooks, spreadsheets or not tracking at all & App tracking of grocery spend and basic nutrition intake \\
 \hline
 \end{tabularx}
+\end{table}
 
 \section{Product Overview}
 
@@ -165,6 +199,10 @@ Students access the web app directly through a browser, on any device. System Ad
 
 \subsection{Assumptions and Dependencies}
 
+\begin{table}[h!]
+\centering
+\caption{Assumptions and dependencies for Healthy Living}
+\label{tab:assumptions-dependencies}
 \begin{tabularx}{\textwidth}{|p{0.45\textwidth}|X|}
 \hline
 \textbf{Assumptions} & \textbf{Dependencies} \\
@@ -190,6 +228,7 @@ Students access the web app directly through a browser, on any device. System Ad
 \\
 \hline
 \end{tabularx}
+\end{table}
 
 \section{Product Features}
 
@@ -277,6 +316,10 @@ Students access the web app directly through a browser, on any device. System Ad
 
 \section{Appendix}
 
+\begin{table}[h!]
+\centering
+\caption{Time spent per Vision Document section}
+\label{tab:appendix-time-1}
 \begin{tabularx}{\textwidth}{|X|>{\raggedright\arraybackslash}p{0.3\textwidth}|}
 \hline
 \textbf{Section} & \textbf{Duration (hours)} \\
@@ -294,6 +337,7 @@ Product Features & 3.5 \\
 Other Product Requirements & 1.5 \\
 \hline
 \end{tabularx}
+\end{table}
 
 \section{Identifying and finding inconsistencies in the vision document}
 
@@ -386,7 +430,7 @@ Other Product Requirements & 1.5 \\
 
 \small
 \renewcommand{\arraystretch}{1.3}
-\begin{longtable}{|c|p{2.6cm}|p{1.9cm}|p{1.3cm}|p{5.2cm}|c|c|}
+\begin{longtable}{|c|p{2.3cm}|p{1.7cm}|p{1.1cm}|p{4.6cm}|p{1.4cm}|p{1.6cm}|}
 \caption{Inconsistencies identified in the Vision Document} \\
 \hline
 \textbf{\#} & \textbf{Location} & \textbf{Inconsistency Type} & \textbf{Class.} & \textbf{Description} & \textbf{Status} & \textbf{Date} \\
@@ -427,7 +471,7 @@ Other Product Requirements & 1.5 \\
 \newpage
 
 \begin{center}
-    {\LARGE \textbf{Rebuttal Form}}\\[0.5em]
+    {\fontsize{24}{28}\selectfont\bfseries Rebuttal Form}\\[0.5em]
 \end{center}
 
 \subsection*{Response to Reviewers, Teacher Assistant, and Instructor}
@@ -448,6 +492,10 @@ Jorge Diaz
 
 Use the following IDs to identify each reviewer in an abbreviated manner through the rebuttal.
 
+\begin{table}[h!]
+\centering
+\caption{Reviewer identification legend}
+\label{tab:reviewer-ids}
 \begin{tabularx}{\textwidth}{|X|c|}
 \hline
 \textbf{Reviewer} & \textbf{ID} \\
@@ -459,6 +507,7 @@ Peer 2 (comments received in D2) & R2 \\
 Teacher assistant (comments received in D1) & R3 \\
 \hline
 \end{tabularx}
+\end{table}
 
 \subsubsection*{Reviewer Comments}
 
@@ -576,6 +625,10 @@ R2.07 You did an excellent job calculating RRL for alternative countermeasures. 
 
 \section{Appendix}
 
+\begin{table}[h!]
+\centering
+\caption{Time spent on Vision Document revisions and rebuttal}
+\label{tab:appendix-time-2}
 \begin{tabularx}{\textwidth}{|X|>{\raggedright\arraybackslash}p{0.3\textwidth}|}
 \hline
 \textbf{Section} & \textbf{Duration (hours)} \\
@@ -588,7 +641,6 @@ Create and attach a rebuttal letter & 4 \\
 
 \hline
 \end{tabularx}
-
-
+\end{table}
 
 \end{document}
