@@ -1,0 +1,903 @@
+\documentclass[10pt,letterpaper]{article}
+
+% ---------------------------------------------------------
+% PAGE SIZE / MARGINS
+% ---------------------------------------------------------
+\usepackage[letterpaper,margin=1in]{geometry}
+
+% ---------------------------------------------------------
+% FONT: Times New Roman (serif) for text and headings
+% ---------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Times New Roman-compatible text and math font
+
+% ---------------------------------------------------------
+% PAGE NUMBERS
+% ---------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---------------------------------------------------------
+% GRAPHICS: vector graphics preferred; PNG allowed (no JPG)
+% Include figures as .pdf/.eps/.svg-converted-to-pdf (vector)
+% or as 300+ dpi .png/.gif if a bitmap is unavoidable.
+% ---------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+
+% ---------------------------------------------------------
+% CAPTIONS: 8pt font for figure/table captions
+% ---------------------------------------------------------
+\usepackage[font=it]{caption}
+\captionsetup{font={it,footnotesize}} % ~8pt equivalent (see explicit sizing below)
+\DeclareCaptionFont{eightpt}{\fontsize{8}{9.5}\selectfont}
+\captionsetup{font={eightpt,it}}
+
+% ---------------------------------------------------------
+% TABLES
+% ---------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\renewcommand{\arraystretch}{1.3}
+
+% ---------------------------------------------------------
+% SECTION / TITLE FONT SIZES
+% Title: 24pt | Body text: 10pt | Index terms: 9pt | Captions/refs: 8pt
+% ---------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12}{14}\bfseries\itshape}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{11}{13}\bfseries}{\thesubsubsection}{1em}{}
+
+% Custom command for 9pt index terms
+\newcommand{\indexterms}[1]{{\fontsize{9}{11}\selectfont \textbf{Index Terms---} #1\par}}
+\newcommand{\ucseparator}{\vspace{1em}\noindent\rule{\linewidth}{0.4pt}\vspace{1.5em}}
+
+% Bibliography / references at 8pt
+% Using standard thebibliography (no external bib backend required).
+% If you prefer biblatex/biber, install biblatex and biber and replace
+% this block with: \usepackage[backend=biber,style=ieee]{biblatex}
+%                  \renewcommand*{\bibfont}{\fontsize{8}{9.5}\selectfont}
+\makeatletter
+\renewenvironment{thebibliography}[1]
+ {\section*{References}%
+  \fontsize{8}{9.5}\selectfont
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+       {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy
+  \clubpenalty4000
+  \@clubpenalty \clubpenalty
+  \widowpenalty4000%
+  \sfcode`\.\@m}
+ {\def\@noitemerr
+   {\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist}
+\makeatother
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black}
+
+\begin{document}
+
+% ===========================================================
+% TITLE (24pt)
+% ===========================================================
+\begin{center}
+{\fontsize{24}{28}\selectfont \textbf{Healthy Living}}
+\end{center}
+\vspace{0.5em}
+
+% Optional: Index terms line (9pt) -- uncomment and edit if needed
+% \indexterms{use case model, actor-goal list, requirements}
+
+% ===========================================================
+% SECTION 1: ACTOR-GOAL LIST
+% ===========================================================
+\section*{1. Actor-Goal List}
+
+\begin{table}[h!]
+\centering
+\caption{Actor-Goal List}
+\label{tab:actor-goal-list}
+\begin{tabular}{|p{0.35\linewidth}|p{0.5\linewidth}|}
+\hline
+\textbf{Actor} & \textbf{Goal} \\
+\hline
+Student (Primary End-User) & Manage and track personal daily intake through the web application \\
+\hline
+System Administrator (Admin) & Maintain, secure, and ensure the overall health and performance of the backend and web application \\
+\hline
+Content Moderator / Content Manager & Oversee the recipe database to ensure the quality, accuracy, and safety of platform content \\
+\hline
+Support Specialist & Handle customer service requests and resolve users' technical or functional issues \\
+\hline
+\end{tabular}
+\end{table}
+
+% ===========================================================
+% SECTION 2: USE CASE MODEL
+% ===========================================================
+\section*{2. Use Case Model}
+
+\subsection*{Id: UC-01}
+
+\subsection*{Use Case: Create a Healthy Living Account}
+
+\subsubsection*{Description}
+A Student signs up for an account so they can start tracking their meals and health goals.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants an account so they can start using the app.
+    \item \textbf{System Administrator:} Wants accounts created safely and stored correctly.
+    \item \textbf{Support Specialist:} Wants sign-up to go smoothly so people don't need help.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student doesn't already have an account.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The Student has a new account and can start using the app.
+
+\textbf{Failure end condition}\\
+No account is created.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to sign up.
+    \item The System asks for information about the Student.
+    \item The Student enters their information.
+    \item The System checks the information is valid and not already in use.
+    \item The Student agrees to the terms.
+    \item The System creates the account and informs the Student
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[3a.] Student gives up before finishing.
+    \begin{enumerate}
+        \item[1.] Use case ends, no account created.
+    \end{enumerate}
+    \item[4a.] Info is missing or wrong.
+    \begin{enumerate}
+        \item[1.] System informs the Student what is wrong.
+        \item[2.] Student fixes it and use case continues at step 4.
+    \end{enumerate}
+    \item[4b.] Account already exists for that Student.
+    \begin{enumerate}
+        \item[1.] System lets them know and suggests logging in instead.
+        \item[2.] Use case ends.
+    \end{enumerate}
+    \item[5a.] Student doesn't agree to the terms.
+    \begin{enumerate}
+        \item[1.] Use case ends, no account created.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-02}
+
+\subsection*{Use Case: Maintain Personal Profile}
+
+\subsubsection*{Description}
+A Student updates their profile information, so their goals and preferences stay up to date.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants their profile to reflect their current goals and preferences.
+    \item \textbf{Content Moderator:} Wants profile info to stay consistent with platform content and guidelines.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in and has an existing account.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The Student's profile reflects the changes they made.
+
+\textbf{Failure end condition}\\
+The profile stays as it was before.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to update their profile.
+    \item The System shows the current information of the Student.
+    \item The Student makes the changes they want.
+    \item The Student submits the changes.
+    \item The System checks if the changes are valid.
+    \item The System saves the changes and informs the Student.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[3a.] Student decides not to make any changes.
+    \begin{enumerate}
+        \item[1.] Use case ends, profile stays the same.
+    \end{enumerate}
+    \item[5a.] Some of the changes aren't valid.
+    \begin{enumerate}
+        \item[1.] System tells the Student what's wrong.
+        \item[2.] Student fixes it and use case continues at step 4.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-03}
+\subsection*{Use Case: Plan Weekly Meals}
+\subsubsection*{Description}
+A Student creates a meal plan for the week so they know what they'll eat and can stay on track with their goals.
+\subsubsection*{Level}
+User-goal
+\subsubsection*{Primary Actor}
+Student
+\subsubsection*{Supporting Actors}
+None
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants a plan for the week to achieve his goals and preferences.
+    \item \textbf{Content Moderator:} Wants recipes suggested through the plan to be accurate.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in and has a profile with their goals and preferences set up.
+
+\subsubsection*{Post Conditions}
+\textbf{Success end condition}\\
+The Student has a weekly meal plan saved to their account.
+
+\textbf{Failure end condition}\\
+No new meal plan is saved.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to plan meals for the week.
+    \item The System suggests recipes based on the Student's goals and preferences.
+    \item The Student picks meals for each day.
+    \item The Student reviews the plan.
+    \item The Student confirms the plan.
+    \item The System saves the weekly meal plan and confirms it worked.
+\end{enumerate}
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[2a.] System has no suitable recipes to suggest.
+    \begin{enumerate}
+        \item[1.] System lets the Student know and asks them to adjust their preferences or search for recipes directly.
+        \item[2.] Student updates their preferences or searches for and picks recipes themself.
+        \item[3.] Use case continues at step 3.
+    \end{enumerate}
+    \item[3a.] Student doesn't like any of the suggested meals or wants more recipes to choose from.
+    \begin{enumerate}
+        \item[1.] Student searches for other recipes and picks them for the relevant days.
+        \item[2.] Use case continues at step 3.
+    \end{enumerate}
+    \item[4a.] Student leaves the plan incomplete (some days without meals).
+    \begin{enumerate}
+        \item[1.] Student decides to finish later.
+        \item[2.] Use case ends, no plan is saved.
+    \end{enumerate}
+    \item[5a.] Student decides not to save the plan.
+    \begin{enumerate}
+        \item[1.] Use case ends, no plan is saved.
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-04}
+
+\subsection*{Use Case: Manage Grocery Inventory}
+
+\subsubsection*{Description}
+A Student keeps track of what groceries they have, adding items as they buy them and removing items as they use them.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants an accurate picture of what groceries they have so they can plan meals.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in and has an existing account.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The grocery inventory reflects the changes they made.
+
+\textbf{Failure end condition}\\
+The inventory data doesn't change.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to update their grocery inventory.
+    \item The System shows the Student's current inventory.
+    \item The Student adds new items they've bought, or marks items as used.
+    \item The Student submits the changes.
+    \item The System checks the changes are valid.
+    \item The System saves the updated inventory and informs the Student.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[3a.] Student decides not to make any changes.
+    \begin{enumerate}
+        \item[1.] Use case ends, inventory stays the same.
+    \end{enumerate}
+    \item[3b.] Student tries to remove more of an item than they have on hand.
+    \begin{enumerate}
+        \item[1.] System lets the Student know and adjusts the amount to zero.
+        \item[2.] Use case continues at step 4.
+    \end{enumerate}
+    \item[3c.] An item marked as used is needed for a meal in the Student's current meal plan.
+    \begin{enumerate}
+        \item[1.] System notifies the Student that a planned meal is affected.
+        \item[2.] Use case continues at step 4, or at UC08 if the Student chooses to review the plan.
+    \end{enumerate}
+    \item[5a.] Some of the changes aren't valid.
+    \begin{enumerate}
+        \item[1.] System tells the Student what's wrong.
+        \item[2.] Student fixes it and use case continues at step 4.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-05}
+
+\subsection*{Use Case: Find Recipes}
+
+\subsubsection*{Description}
+A Student searches for recipes that match what they're looking for, based on ingredients or dietary preferences.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants to find recipes that fit their needs and preferences.
+    \item \textbf{Content Moderator:} Wants search results to only include accurate and approved recipes.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The Student sees a list of recipes matching their search.
+
+\textbf{Failure end condition}\\
+No search results are shown.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to search for recipes.
+    \item The Student enters their search criteria (e.g., ingredients and dietary needs).
+    \item The System looks for recipes that match the criteria.
+    \item The System displays a list of matching recipes.
+    \item The Student selects a recipe to view.
+    \item The System shows the recipe details.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[3a.] No recipes match the criteria.
+    \begin{enumerate}
+        \item[1.] System informs the Student and suggests adjusting the search.
+        \item[2.] Student changes their criteria and use case continues at step 2.
+    \end{enumerate}
+    \item[5a.] Student doesn't select a recipe.
+    \begin{enumerate}
+        \item[1.] Use case ends, no recipe is viewed.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-06}
+
+\subsection*{Use Case: Obtain Recipe Recommendations}
+
+\subsubsection*{Description}
+A Student asks the system for recipe suggestions based on their goals, preferences and ingredients he has.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants relevant recipe ideas without having to search for them manually.
+    \item \textbf{Content Moderator:} Wants recommended recipes to be accurate and approved.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in and has a profile with their goals and preferences set up.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The Student sees a list of recommended recipes.
+
+\textbf{Failure end condition}\\
+No recommendations are shown.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks for recipe recommendations.
+    \item The System looks at the Student's goals, preferences and inventory.
+    \item The System finds recipes that fit.
+    \item The System shows the Student the recommended recipes.
+    \item The Student selects a recipe to view.
+    \item The System shows the recipe details.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[3a.] System can't find any recipes that fit.
+    \begin{enumerate}
+        \item[1.] System lets the Student know and suggests updating their preferences.
+        \item[2.] Use case ends, no recommendations shown.
+    \end{enumerate}
+    \item[5a.] Student doesn't select a recipe.
+    \begin{enumerate}
+        \item[1.] Use case ends, no recipe is viewed.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-07}
+
+\subsection*{Use Case: Generate Shopping List}
+
+\subsubsection*{Description}
+A Student gets a shopping list based on their meal plan and what they already have in their inventory.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants an accurate list of what to buy without having to figure it out manually.
+    \item \textbf{System Administrator:} Wants shopping list data stored reliably.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in and has a saved weekly meal plan.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The Student has a shopping list saved to their account.
+
+\textbf{Failure end condition}\\
+No shopping list is saved.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to generate a shopping list.
+    \item The System looks at the ingredients needed for the meal plan.
+    \item The System compares them against the Student's current inventory.
+    \item The System puts together a list of the items still needed.
+    \item The System shows the Student the shopping list.
+    \item The Student reviews and confirms the list.
+    \item The System saves the shopping list and confirms it worked.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[4a.] Nothing is needed because the Student already has everything.
+    \begin{enumerate}
+        \item[1.] System lets the Student know no shopping is needed.
+        \item[2.] Use case ends, no list is saved.
+    \end{enumerate}
+    \item[6a.] Student wants to add or remove items from the list.
+    \begin{enumerate}
+        \item[1.] Student makes changes to the list.
+        \item[2.] Use case continues at step 6.
+    \end{enumerate}
+    \item[6b.] Student decides not to save the list.
+    \begin{enumerate}
+        \item[1.] Use case ends, no list is saved.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-08}
+
+\subsection*{Use Case: Review Meal Plan}
+
+\subsubsection*{Description}
+A Student looks over their current weekly meal plan to check it still fits their needs and makes adjustments if it doesn't.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Student
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Student:} Wants to make sure their plan still matches their goals and make changes if it doesn't.
+    \item \textbf{Content Moderator:} Wants recipes to be accurate and approved.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Student is logged in and has a saved weekly meal plan.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The meal plan reflects any changes the Student made or is confirmed as-is.
+
+\textbf{Failure end condition}\\
+The meal plan stays as it was before.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Student asks to review their meal plan.
+    \item The System shows the Student their current weekly plan.
+    \item The Student checks the plan against their goals.
+    \item The Student makes changes to one or more meals.
+    \item The Student confirms the updated plan.
+    \item The System saves the changes and informs the Student.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[3a.] Student decides the plan is fine as-is.
+    \begin{enumerate}
+        \item[1.] Use case ends, no changes made.
+    \end{enumerate}
+    \item[4a.] Student wants to swap out a meal.
+    \begin{enumerate}
+        \item[1.] Student picks a different recipe for that meal.
+        \item[2.] Use case continues at step 4.
+    \end{enumerate}
+    \item[5a.] Student decides not to keep the changes.
+    \begin{enumerate}
+        \item[1.] Use case ends, plan stays the same.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+
+\ucseparator
+
+\subsection*{Id: UC-09}
+
+\subsection*{Use Case: Moderate Recipe Content}
+
+\subsubsection*{Description}
+A Content Moderator reviews recipes submitted or flagged on the platform to make sure they're accurate and safe before they stay live.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Content Moderator
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Content Moderator:} Wants an efficient way to review and act on recipes needing attention.
+    \item \textbf{Student:} Wants the recipes they see on the platform to be accurate and safe.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Content Moderator is logged in and there are recipes pending review.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The reviewed recipe is approved, edited or removed based on the Moderator's decision.
+
+\textbf{Failure end condition}\\
+The recipe's status stays unchanged.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Content Moderator asks to review pending recipes.
+    \item The System shows a list of recipes needing review.
+    \item The Content Moderator selects a recipe to review.
+    \item The System shows the recipe's details.
+    \item The Content Moderator checks the recipe for accuracy and safety.
+    \item The Content Moderator approves the recipe.
+    \item The System updates the recipe's status and confirms it worked.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[5a.] Content Moderator finds issues that can be fixed.
+    \begin{enumerate}
+        \item[1.] Content Moderator edits the recipe.
+        \item[2.] Use case continues at step 6.
+    \end{enumerate}
+    \item[5b.] Content Moderator finds the recipe unsafe or inappropriate.
+    \begin{enumerate}
+        \item[1.] Content Moderator removes the recipe.
+        \item[2.] Use case continues at step 7.
+    \end{enumerate}
+    \item[6a.] Content Moderator decides to leave the recipe as pending for further review.
+    \begin{enumerate}
+        \item[1.] Use case ends, recipe stays pending.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-10}
+
+\subsection*{Use Case: Resolve User Support Requests}
+
+\subsubsection*{Description}
+A Support Specialist addresses a user's support request to help them resolve a technical or functional issue.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+Support Specialist
+
+\subsubsection*{Supporting Actors}
+Student
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{Support Specialist:} Wants to understand and resolve Student issues.
+    \item \textbf{Student:} Wants their issue resolved quickly and correctly.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The Support Specialist is logged in and there is an open support request.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The support request is resolved and closed.
+
+\textbf{Failure end condition}\\
+The support request stays open.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The Support Specialist asks to view open support requests.
+    \item The System shows a list of open requests.
+    \item The Support Specialist selects a request to work on.
+    \item The System shows the request details.
+    \item The Support Specialist investigates the issue.
+    \item The Support Specialist resolves the issue.
+    \item The Support Specialist closes the request.
+    \item The System updates the request status and informs the Student.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[5a.] Support Specialist needs more information from the Student.
+    \begin{enumerate}
+        \item[1.] Support Specialist contacts the Student for details.
+        \item[2.] Student provides the requested details.
+        \item[3.] Use case continues at step 5.
+    \end{enumerate}
+    \item[6a.] Support Specialist can't resolve the issue directly.
+    \begin{enumerate}
+        \item[1.] Support Specialist escalates the request.
+        \item[2.] Use case ends, request stays open pending escalation.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for Usability, Reliability, Performance and Supportability requirements.
+
+\ucseparator
+
+\subsection*{Id: UC-11}
+
+\subsection*{Use Case: Manage User Accounts}
+
+\subsubsection*{Description}
+A System Administrator makes changes to user accounts, such as suspending, reinstating or removing them, to keep the platform secure and running properly.
+
+\subsubsection*{Level}
+User-goal
+
+\subsubsection*{Primary Actor}
+System Administrator
+
+\subsubsection*{Supporting Actors}
+None
+
+\subsubsection*{Stakeholders and Interests}
+\begin{itemize}
+    \item \textbf{System Administrator:} Wants to manage accounts and keep the platform secure.
+    \item \textbf{Student:} Wants their account managed securely.
+\end{itemize}
+
+\subsubsection*{Pre-Conditions}
+The System Administrator is logged in and the account to manage exists.
+
+\subsubsection*{Post Conditions}
+
+\textbf{Success end condition}\\
+The account reflects the change the Administrator made.
+
+\textbf{Failure end condition}\\
+The account stays unchanged.
+
+\subsection*{Main Success Scenario}
+\begin{enumerate}
+    \item The System Administrator asks to view user accounts.
+    \item The System shows a list of accounts.
+    \item The System Administrator selects an account to manage.
+    \item The System shows the account's details.
+    \item The System Administrator chooses an action to take on the account.
+    \item The System Administrator confirms the action.
+    \item The System applies the change and informs the system administrator.
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+    \item[5a.] Administrator decides not to take any action.
+    \begin{enumerate}
+        \item[1.] Use case ends, account stays unchanged.
+    \end{enumerate}
+    \item[6a.] Administrator cancels before confirming.
+    \begin{enumerate}
+        \item[1.] Use case ends, account stays unchanged.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Special Requirements}
+See Supplementary Specification for data security and account privacy requirements.
+\clearpage
+
+% ===========================================================
+% SECTION 3: USE CASE DIAGRAM
+% ===========================================================
+
+\section*{3. Use Case Diagram}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{images/UseCaseDiagram.png}
+\caption{Use case diagram for the Healthy Living App.}
+\label{fig:use-case-diagram}
+\end{figure}
+\clearpage
+
+% ===========================================================
+% SECTION 4: SEQUENCE DIAGRAM - UC04
+% ===========================================================
+\section*{4. Sequence Diagram: Manage Grocery Inventory (UC-04)}
+ 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{images/SequenceDiagramUC04.png}
+\caption{Sequence diagram for the Manage Grocery Inventory use case (UC-04).}
+\label{fig:sequence-diagram-uc04}
+\end{figure}
+\clearpage
+
+% ===========================================================
+% SECTION 5: ACTIVITY DIAGRAM - UC03
+% ===========================================================
+\section*{5. Activity Diagram: Plan Weekly Meals (UC-03)}
+ 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{images/ActivityDiagramUC03.png}
+\caption{Activity diagram for the Plan Weekly Meals use case (UC-03).}
+\label{fig:activity-diagram-uc03}
+\end{figure}
+ 
+\clearpage
+
+% ===========================================================
+% EXAMPLE FIGURE (vector graphic, 300+ dpi if bitmap, captioned)
+% ===========================================================
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.8\linewidth]{diagram.pdf} % vector format preferred
+% \caption{Use case diagram showing actor interactions.}
+% \label{fig:use-case-diagram}
+% \end{figure}
+
+% ===========================================================
+% REFERENCES (8pt, automatically applied by the thebibliography
+% environment redefinition above)
+% ===========================================================
+% \begin{thebibliography}{9}
+% \bibitem{example2024} A. Author, ``Title of the paper,'' \textit{Journal Name}, vol. 1, no. 1, pp. 1--10, 2024.
+% \end{thebibliography}
+
+\end{document}
