@@ -170,7 +170,7 @@ Support Specialist & Helps users with problems & Resolves tickets, fixes issues 
 \hline
 Plan meals quickly & High & No time and no budgeting skill make it hard to plan balanced meals on their own & Deciding meals day to day relying on his memory with no plan or budget in mind & A guided meal planner that suggests meals based on budget, schedule and preferences \\
 \hline
-Know what to buy & High & Manually written lists lead to forgotten items, duplicate purchases and extra store trips & Handwritten or memorized grocery lists & A grocery list generated automatically from the meal plan, editable in the web app\\
+Know what to buy & High & Manually written lists lead to forgotten items, duplicate purchases and extra store trips & Handwritten or memorized grocery lists & A grocery list generated automatically from the meal plan and the grocery inventory\\
 \hline
 Find recipes that match skill and time & High & Recipes found online are often too complex or assume equipment and time students do not have & Searching randomly online or asking friends and family & Recipes filtered by difficulty, time and available ingredients \\
 \hline
@@ -184,7 +184,7 @@ Track spending and nutrition & Medium & Hard to keep an eye on budget and health
 \section{Product Overview}
 
 \subsection{Product Perspective}
-Healthy Living is a stand-alone web application. It is not part of a larger internal system or product line and it does not depend on any other in-house product to function. It maintains a consistent, centralized data store for meal plans, grocery lists, recipes, user accounts and support tickets, so that data is accessible and up to date across all four user roles.
+Healthy Living is a stand-alone web application. It is not part of a larger internal system or product line and it does not depend on any other in-house product to function. It maintains a consistent, centralized data store for meal plans, grocery lists, grocery inventory, recipes, user accounts and support tickets, so that data is accessible and up to date.
 
 While the product is self-contained, it does interface with external systems. Healthy Living integrates with existing third-party APIs to retrieve food-related data, such as nutrition facts and ingredient information, rather than maintaining this data manually. This keeps recipe and nutrition content accurate and up to date without extra work from the Content Moderator.
 
@@ -240,10 +240,10 @@ Students access the web app directly through a browser, on any device. System Ad
   \item \textbf{Meal Plan Creation:} A student can plan meals for a day or a week, so they know what to eat ahead of time. The web app enforces the student's set grocery budget and will not let a meal plan be created if its estimated cost exceeds that budget.
   \item \textbf{Meal Plan Editing:} A student can change or remove planned meals, so the plan can adjust to a busy week.
   \item \textbf{Weekly Calendar View:} A student can see all planned meals for the week in one place.
-  \item \textbf{Automatic Grocery List Generation:} The web app builds a grocery list from the meal plan, so the student does not have to figure it out themselves.
-  \item \textbf{Grocery List Editing and Check-off:} A student can add, remove, or check off items while shopping, so the list is updated.
+  \item \textbf{Grocery Inventory and List Generation:} A student can track the groceries they currently have, adding items when they buy them and marking items as used after cooking. The web app automatically builds a grocery list by comparing the ingredients required by the meal plan against this inventory, so the student only needs to buy what they don't already have.
+  \item \textbf{Grocery List Editing and Check-off:} A student can add, remove or check off items on the generated grocery list while shopping. Checked-off items are automatically added to the student's grocery inventory (Feature 7), so the inventory stays accurate without extra effort.
   \item \textbf{Recipe Search and Filtering:} A student can actively search for and filter recipes by ingredient, difficulty or time. The results are automatically pre-filtered using the student's saved diet, allergy and cooking-skill preferences from their profile (Feature 2) and the student can refine from there, so they can find something specific they can actually cook.
-  \item \textbf{Recipe Suggestions Based on Meal Plan:} Independent of any search, the web app proactively suggests recipes that match the student's existing meal plan, budget and skill, so they spend less time deciding without having to search themselves.
+  \item \textbf{Recipe Suggestions Based on Meal Plan:} Independent of any search, the web app proactively suggests recipes that match the student's profile, budget and skill, whether the student is building a new meal plan or reviewing an existing one, so they spend less time deciding.
   \item \textbf{Recipe Nutrition and Allergen Information:} A student can see nutrition facts and allergen warnings on a recipe, so they can make safe choices.
   \item \textbf{Save and Rate Recipes:} A student can save favorite recipes and rate ones they have tried, so good recipes are easy to find again.
   \item \textbf{Flag Recipe:} A student can flag a recipe if they have concerns about its accuracy, safety or quality, so moderators can review it.
